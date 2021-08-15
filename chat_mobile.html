@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39"
+    />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>{{name}}</title>
+  </head>
+  <body>
+    <div class="layui-fluid">
+      <div class="layui-row">
+        <div class="layui-col-xs12 layui-hide-sm layui-hide-md layui-hide-lg">
+          <div class="layui-tab">
+            <ul class="layui-tab-title">
+              <li class="layui-this">网站设置</li>
+              <li>用户管理</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div class="layui-panel friendarea">
+                  <div class="layui-collapse">
+                    <div class="layui-colla-item">
+                      <h2 class="layui-colla-title">name1</h2>
+                      <div class="layui-colla-content layui-show">内容区域</div>
+                    </div>
+                    <div class="layui-colla-item">
+                      <h2 class="layui-colla-title">name2</h2>
+                      <div class="layui-colla-content layui-show">内容区域</div>
+                    </div>
+                    <div class="layui-colla-item">
+                      <h2 class="layui-colla-title">name3</h2>
+                      <div class="layui-colla-content layui-show">内容区域</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="layui-tab-item">
+                <div class="layui-panel chatpanel">
+                  <div class="layui-card">
+                    <div class="layui-card-header">
+                      <img
+                        src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2077898222,316514998&amp;fm=26&amp;gp=0.jpg"
+                        class="layui-nav-img"
+                      />nam1
+                    </div>
+                    <div class="layui-card-body">
+                      <div
+                        class="flow-default chatarea"
+                        style="overflow-y: scroll"
+                      >
+                        <ul>
+                          <li class="chat-mine">
+                            <div class="chat-user">
+                              <img
+                                src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2077898222,316514998&amp;fm=26&amp;gp=0.jpg"
+                                class="layui-nav-img"
+                              />nam2
+                              <cite>
+                                <i>1999-06-22 10:30:16</i>
+                              </cite>
+                            </div>
+                            <span class="chat-text"
+                              >消息-----------------------------------------------------------------------------</span
+                            >
+                          </li>
+                          <li>
+                            <div>
+                              <img
+                                src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2077898222,316514998&amp;fm=26&amp;gp=0.jpg"
+                                class="layui-nav-img"
+                              />nam2
+                              <cite>
+                                <i>2020-06-22 10:30:16</i>
+                              </cite>
+                            </div>
+                            <span class="chat-text"
+                              >消息-----------------------------------------------------------------------------</span
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="layui-card-header">
+                      <i class="layui-icon">&#xe60c;</i>
+                      <i class="layui-icon">&#xe60d;</i>
+                      <i class="layui-icon">&#xe621;</i>
+                      <i class="layui-icon">&#xe635;</i>
+                    </div>
+                    <div class="layui-card-body">
+                      <textarea
+                        name=""
+                        required=""
+                        lay-verify="required"
+                        placeholder="请输入"
+                        class="layui-textarea layui-textarea-mini"
+                      ></textarea>
+                    </div>
+
+                    <div class="layui-card-body" style="text-align: right">
+                      <button type="button" class="layui-btn">发送</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="./layui/css/layui.css" media="all" />
+    <script src="./layui/layui.js" charset="utf-8"></script>
+    <style type="text/css" media="all">
+      .blankarea {
+        height: calc(10vh);
+      }
+
+      .friendarea {
+        height: calc(91vh);
+      }
+
+      .chatarea {
+        height: calc(41vh);
+      }
+
+      .chat-user,
+      .chat-mine {
+        margin-right: 0;
+        text-align: right;
+      }
+
+      .chat-text {
+        height: 30px;
+        font-size: 21px;
+        margin-right: 0;
+        text-align: right;
+        word-wrap: break-word;
+        word-break: normal;
+      }
+
+      .layui-textarea-mini {
+        min-height: 50px;
+      }
+    </style>
+
+    <script>
+      layui.config({
+        version: "1623988781489", //为了更新 js 缓存，可忽略
+      });
+      //加载模块
+      layui.use(
+        ["element", "jquery", "form", "layer", "flow", "upload"],
+        function () {
+          var $ = layui.$,
+            layer = layui.layer,
+            upload = layui.upload,
+            flow = layui.flow;
+
+          $(".blankarea").css("height", window.screen.availHeight * 0.05);
+
+          $(".chatarea").css("height", window.screen.availHeight * 0.41);
+
+          $(".friendarea").css(
+            "height",
+            window
+              .getComputedStyle(document.querySelector(".chatpanel"))
+              .getPropertyValue("height")
+          );
+
+          scrollarea = document.querySelector(".chatarea");
+          scrollarea.scrollTop = scrollarea.scrollHeight;
+        }
+      );
+    </script>
+  </body>
+</html>

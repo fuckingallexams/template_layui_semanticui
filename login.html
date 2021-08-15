@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title> {{name}} </title>
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  </head>
+  <body>
+  <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+  <!--[if lt IE 9]>
+  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+  <div class="layui-fluid">
+    
+	<form class="layui-form admin-login-form" action='/auth/admin/login' method='post'>
+      <blockquote class="layui-elem-quote">后台登陆页面</blockquote>
+      <div class="layui-row blankarea" style="height: 80px;"></div>
+      <div class="layui-row" >
+        <div class="layui-col-xs12 layui-col-sm-offset2 layui-col-sm8 layui-col-md-offset2 layui-col-md8">
+          <div class="layui-form-item input-item">
+            <input type="text" placeholder="请输入用户名" autocomplete="off" name="username" class="layui-input"
+            lay-verify="required" />
+          </div>
+          <div class="layui-form-item input-item">
+            <input type="password" placeholder="请输入密码" autocomplete="off" name="password" class="layui-input"
+            lay-verify="required" />
+          </div>
+          <div class="layui-form-item" style="text-align: center;font-weight: bold;">
+            <button class="layui-btn layui-block">登录</button>
+          </div>
+          <div class="layui-form-item">
+          <!--<input id="butt" type="button" value="注册" /><br><br><br>--></div>
+        </div>
+      </div>
+    </form>
+	
+  </div>
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all" />
+  <script src="./layui/layui.js" charset="utf-8"></script> 
+  <script>
+  layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  var $ = layui.$;
+  $('.blankarea').css('height', window.screen.availHeight *0.18);
+});
+
+  </script>
+  
+  </body>
+</html>

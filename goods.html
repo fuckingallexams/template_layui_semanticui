@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>{{name}}</title>
+  </head>
+
+  <body>
+    <!-- 电脑端 -->
+    <div class="layui-fluid">
+      <div class="layui-row blankarea" style="height: 80px"></div>
+      <div class="layui-row">
+        <div
+          class="
+            layui-col-xs12
+            layui-col-sm-offset2
+            layui-col-sm8
+            layui-col-md-offset2
+            layui-col-md8
+          "
+        >
+          <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+            <ul class="layui-nav layui-bg-cyan">
+              <li class="layui-nav-item layui-this">
+                <a><b>{{name}}</b></a>
+              </li>
+              <li class="layui-nav-item lxkfclick"><a> 联系客服 </a></li>
+              <li class="layui-nav-item cxddclick"><a> 查询订单 </a></li>
+            </ul>
+
+            <div class="layui-panel">
+              <form class="layui-form layui-form-pane" action="/pay">
+                <div class="layui-form-item"></div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label">下单凭证</label>
+                  <div class="layui-input-block">
+                    <input
+                      type="email"
+                      name="contact"
+                      required=""
+                      lay-verify="required"
+                      placeholder="请输入邮箱"
+                      autocomplete="off"
+                      class="layui-input"
+                    />
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label">购买商品</label>
+                  <div class="layui-input-block">
+                    <select name="goods" lay-verify="required">
+                      {% for k in goods %}
+                      <option value="{{k[0]}}">{{k[1]}} - 单价 {{k[2]}} 元</option>
+                      {% endfor %}
+                    </select>
+                    <div class="layui-unselect layui-form-select">
+                      <div class="layui-select-title">
+                        <input
+                          type="text"
+                          placeholder="请选择"
+                          value=""
+                          readonly=""
+                          class="layui-input layui-unselect"
+                        /><i class="layui-edge"></i>
+                      </div>
+                      <dl class="layui-anim layui-anim-upbit">
+                        <dd lay-value="" class="layui-select-tips">请选择</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label">订单号</label>
+                  <div class="layui-input-block">
+                    <input
+                      readonly
+                      type="text"
+                      name="ordernum"
+                      required=""
+                      lay-verify="required"
+                      autocomplete="off"
+                      class="layui-input"
+                      value="{{ordernum}}"
+                    >
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label">购买数量</label>
+                  <div class="layui-input-block">
+                    <input
+                      type="text"
+                      lay-verify="number"
+                      name="number"
+                      value="1"
+                      onblur="value=zhzs(this.value)"
+                      class="layui-input"
+                    />
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <label class="layui-form-label">支付方式</label>
+                  <div class="layui-input-block">
+                    <select name="payments" lay-verify="required">
+                      {% for p in payments %}
+                      <option value="{{p[0]}}">{{p[1]}}</option>
+                      {% endfor %}
+                    </select>
+                    <div class="layui-unselect layui-form-select">
+                      <div class="layui-select-title">
+                        <input
+                          type="text"
+                          placeholder="请选择"
+                          value=""
+                          readonly=""
+                          class="layui-input layui-unselect"
+                        /><i class="layui-edge"></i>
+                      </div>
+                      <dl class="layui-anim layui-anim-upbit">
+                        <dd lay-value="" class="layui-select-tips">请选择</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-form-item">
+                  <hr />
+                  <div class="" style="text-align: center">
+                    <a class="agreementclick" style="color: red"
+                      >同意并已阅读购买须知</a
+                    >
+                  </div>
+                  <hr />
+                  <div class="" style="text-align: center">
+                    <button
+                      style="font-weight: bold"
+                      class="layui-btn layui-block buyclick"
+                    >
+                      购买
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="./layui/css/layui.css" media="all" />
+    <script src="./layui/layui.js" charset="utf-8"></script>
+    <style type="text/css" media="all">
+      .blankarea {
+        height: calc(10vh);
+      }
+
+      .friendarea {
+        height: calc(91vh);
+      }
+
+      .chatarea {
+        height: calc(41vh);
+      }
+
+      .chat-user,
+      .chat-mine {
+        margin-right: 0;
+        text-align: right;
+      }
+
+      .chat-text {
+        height: 30px;
+        font-size: 21px;
+        margin-right: 0;
+        text-align: right;
+        word-wrap: break-word;
+        word-break: normal;
+      }
+
+      .layui-textarea-mini {
+        min-height: 50px;
+      }
+    </style>
+
+    <script>
+      layui.config({
+        version: "1623988781489", //为了更新 js 缓存，可忽略
+      });
+      //加载模块
+      layui.use(
+        ["element", "jquery", "form", "layer", "flow", "upload"],
+        function () {
+          var $ = layui.$,
+            layer = layui.layer,
+            upload = layui.upload,
+            flow = layui.flow;
+          $(".blankarea").css("height", window.screen.availHeight * 0.05);
+
+          $(".agreementclick").on("click", function () {
+            layer.open({
+              type: 1,
+              title: "购买须知",
+              btn: ["确定并同意"],
+              content:
+               '购买须知', //这里content是一个普通的String
+            });
+          });
+
+          $(".lxkfclick").on("click", function () {
+            layer.open({
+              type: 1,
+              title: "客服联系方式",
+              btn: ["已添加"],
+              content:
+                '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">添加QQ <br> </div>', //这里content是一个普通的String
+            });
+          });
+
+          $(".cxddclick").on("click", function () {
+            layer.open({
+              type: 1,
+              title: "查询订单",
+              btn: ["已添加"],
+              content:
+                '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">添加 QQ <br> </div>', //这里content是一个普通的String
+            });
+          });
+
+        }
+      );
+    </script>
+    <script>
+      function zhzs(value) {
+        value = value.replace(/[^\d]/g, "").replace(/^0{1,}/g, "");
+        if (value != "") value = parseFloat(value).toFixed(0);
+        else value = parseFloat(0).toFixed(0);
+        return value;
+      }
+    </script>
+  </body>
+</html>
